@@ -94,6 +94,8 @@ class EchoConsumer(AsyncWebsocketConsumer):
                 "message": msg,
                 "to":"user",
                 "Who": self.user.username,
+                "fn": self.user.first_name,
+                "ln": self.user.last_name,
                 "Id":self.user.id
             })
         elif "global" == wheres:
@@ -104,9 +106,20 @@ class EchoConsumer(AsyncWebsocketConsumer):
                     "to":"global",
                     "message": msg,
                     "Who": self.user.username,
+                    "fn": self.user.first_name,
+                    "ln": self.user.last_name,
                     "Id":self.user.id
                 }
             )
+
     async def chat(self, event):
-        message = "{"+f'"from":"{event["to"]}","id":"{event["Id"]}","who":"{event["Who"]}","message":"{event["message"]}"'+"}"
-        await self.send(text_data=message)
+        payload = {
+            "from": event.get("to"),
+            "id": event.get("Id"),
+            "who": event.get("Who"),
+            "First_name": event.get("fn", ""),   # ALWAYS present
+            "Last_name": event.get("ln", ""),    # ALWAYS present
+            "message": event.get("message"),
+        }
+
+        await self.send(text_data=json.dumps(payload))
