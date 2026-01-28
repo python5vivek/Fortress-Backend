@@ -6,7 +6,7 @@ from channels.db import database_sync_to_async
 from .models import User,Messages
 import json
 
-ONLINE_USER = list()
+#ONLINE_USER = list()
 
 @database_sync_to_async
 def save_message(sender, receiver_id, content):
@@ -65,7 +65,7 @@ class EchoConsumer(AsyncWebsocketConsumer):
             f"user_{self.user.id}",
             self.channel_name
         )
-        ONLINE_USER.append(self.user.id)
+        #ONLINE_USER.append(self.user.id)
         unread = await get_unread_messages(self.user)
         for msg in unread:
             await self.send(text_data=json.dumps({
@@ -79,15 +79,15 @@ class EchoConsumer(AsyncWebsocketConsumer):
             
         await self.send(text_data='{"message":"Connected to WebSocket","from":"system","who":"server"}')
     async def disconnect(self, close_code):
-        ONLINE_USER.remove(self.user.id)
+        #ONLINE_USER.remove(self.user.id)
+        pass
     async def receive(self, text_data):
         data = json.loads(text_data)
         wheres = data["to"]
         msg = data["message"]
         if "user" == wheres:
             message_obj = await save_message(self.user, data['id'], msg)
-            if int(data["id"]) in ONLINE_USER:
-                await mark_as_read(message_obj.id)
+            await mark_as_read(message_obj.id)
                 #await delete_message(msg["id"])
             await self.channel_layer.group_send(f"user_{data['id']}",{
                 "type": "chat",
