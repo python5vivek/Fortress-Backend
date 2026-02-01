@@ -101,16 +101,16 @@ WSGI_APPLICATION = 'fortress.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
+import dj_database_url
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'fortress_db',
-        'USER': 'fortress_db_user',
-        'PASSWORD': '9wEboRNYVV6Zb3u4TFPFK878Q0w',
-        'HOST': 'dng-d512v8uijple73814010-a',  # Internal hostname
-        'PORT': '5432',
-    }
+    "default": dj_database_url.config(
+        default="postgresql://user:password@dpg-xxxx.oregon-postgres.render.com/fortress_db",
+        conn_max_age=600,
+        ssl_require=True,
+    )
 }
+
 
 
 # Password validation
