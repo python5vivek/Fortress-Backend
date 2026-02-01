@@ -108,7 +108,7 @@ DATABASES = {
         'USER': 'fortress_db_user',
         'PASSWORD': '9wEboRNYVV6Zb3u4TFPFK878Q0w',
         'HOST': 'dng-d512v8uijple73814010-a',  # Internal hostname
-        'PORT': '6432',
+        'PORT': '5432',
     }
 }
 
