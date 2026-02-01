@@ -27,6 +27,10 @@ DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://fortress-r2yz.onrender.com',
+]
+
 
 # Application definition
 
