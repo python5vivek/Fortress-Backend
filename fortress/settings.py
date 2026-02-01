@@ -103,8 +103,12 @@ WSGI_APPLICATION = 'fortress.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'fortress_db',
+        'USER': 'fortress_db_user',
+        'PASSWORD': '9wEboRNYVV6Zb3u4TFPFK878Q0w',
+        'HOST': 'dng-d512v8uijple73814010-a',  # Internal hostname
+        'PORT': '6432',
     }
 }
 
