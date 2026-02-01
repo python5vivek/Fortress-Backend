@@ -105,9 +105,7 @@ import dj_database_url
 
 DATABASES = {
     "default": dj_database_url.config(
-        default="postgresql://user:password@dpg-xxxx.oregon-postgres.render.com/fortress_db",
         conn_max_age=600,
-        ssl_require=True,
     )
 }
 
