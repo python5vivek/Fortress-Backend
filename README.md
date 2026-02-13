@@ -51,7 +51,3 @@ Fortress-Backend/
 *   **`manage.py`**: A command-line utility for interacting with the Django project.
 *   **`db.sqlite3`**: The default SQLite database file.
 *   **`staticfiles_production/`**: This directory appears to contain static files (CSS, JavaScript, images) that have been collected for production use, specifically for the Django admin interface.
-
-## Unknowns
-
-The specific functionality and purpose of the `core` application, its models, views, and serializers are not detailed in the provided file and folder names. The exact nature of the "Fortress Application" is also unknown.
